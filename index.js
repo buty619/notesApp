@@ -5,6 +5,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 
 //  ----------
+const PORT = process.env.PORT  || 3000;
 mongoose.connect('mongodb+srv://CristianB:cristian1991@cluster0-vjfaj.mongodb.net/NotesApp?retryWrites=true', { useNewUrlParser: true });
 mongoose.connection.on("error", function(e) { console.error(e); });
 app.use(express.urlencoded());
@@ -37,7 +38,4 @@ app.post('/post', function(req,res){
   });
 });
 
-
-
-
-app.listen(3000, () => console.log("Inició en puerto 3000 ..."));
+app.listen(PORT, () => console.log("Inició en puerto .." + PORT));
