@@ -46,6 +46,7 @@ app.post('/post', function(req,res){
 app.post('/update', function(req,res){
   let id = req.body.text.value;
   console.log(id);
+  res.redirect("/");
 });
 
 app.listen(PORT, () => console.log("Inició en puerto .." + PORT));
