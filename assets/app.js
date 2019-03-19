@@ -14,3 +14,16 @@ $(".notas").on("click",function(){
   $("#text").val(text);
   $("#idNote").val($(this).attr("id"));
 });
+
+$(".notas").on('click', function(e) {
+  fetch('/noteSelect', {method: 'GET'})
+    .then(function(response) {
+      if(response.ok) {
+        return $(this).attr("id");
+      }
+      throw new Error('Request failed.');
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+});

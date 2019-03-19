@@ -60,6 +60,10 @@ app.post('/notes', function(req,res){
   res.redirect("/notes");
 });
 
+app.get('/noteSelect', function(req,res){
+    
+});
+
 // app.post('/update', function(req,res){
 //   Notes.findById(req.body.idNote, function(err, note) {
 //     console.log(note);
