@@ -21,11 +21,11 @@ var notesSchema = mongoose.Schema({
 
 const Notes = mongoose.model("Notes", notesSchema);
 
-app.get('/', function(req, res){
+app.get('/', async function(req, res){
   Notes.find(function(err, notes) {
     if (err) return console.error(err);
-    console.log(notes);
-    res.render("index",{notes});    
+    const notas = await notes
+    res.render("index",{notas});    
   });
 });
 
