@@ -46,6 +46,14 @@ app.post('/post', function(req,res){
 app.post('/update', function(req,res){
   let id = req.body.id;
   console.log(id);
+  Notes.findById(id, function(err, note) {
+    if (err) return console.error(err);  
+    note.title = req.body.title;
+    note.text = req.body.text;
+    note.save(function(err) {
+      if (err) return console.error(err);
+    });
+  });
   res.redirect("/");
 });
 
