@@ -60,7 +60,7 @@ app.post('/notes', function(req,res){
   res.redirect("/notes");
 });
 
-app.get('/notes/:id', function(req,res){
+app.get('/notes/:id', async function(req,res){
   const notas = await Notes.find();
   const note = await Notes.findById(req.params.id);
   res.render("show",{notes:notas, currentNote: note});
