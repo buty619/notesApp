@@ -44,7 +44,7 @@ app.post('/post', function(req,res){
 });
 
 app.post('/update', function(req,res){
-  let id = req.body.id;
+  let id = req.body.idNote;
   console.log(id);
   Notes.findById(id, function(err, note) {
     console.log(note);
