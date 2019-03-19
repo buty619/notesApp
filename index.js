@@ -74,7 +74,7 @@ app.patch('/notes/:id', async function(req,res,next){
   note.body = req.body.text;
   try{
     await note.save({});
-    res.status(204).send([]);
+    //res.status(204).send([]);
   }catch(e){
     return next(e);
   }
@@ -87,7 +87,7 @@ app.delete('/notes/:id', async function(req,res,next){
       note.remove(function(err) {
       if (err) return console.error(err);
     });  
-    res.status(204).send([]);
+    //res.status(204).send([]);
   }catch(e){
     return next(e);
   }
