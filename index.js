@@ -36,6 +36,7 @@ app.post('/post', function(req,res){
     }
     console.log("documento generado");
   });
+  res.redirect("/");
 });
 
 app.listen(PORT, () => console.log("Inició en puerto .." + PORT));
