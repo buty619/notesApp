@@ -44,8 +44,8 @@ app.post('/post', function(req,res){
 });
 
 app.post('/update', function(req,res){
-  //let id = req.body.text.value;
-  //console.log(id);
+  let id = req.body.id;
+  console.log(id);
   res.redirect("/");
 });
 
