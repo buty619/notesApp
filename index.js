@@ -43,7 +43,7 @@ app.get('/notes/new', async function(req, res){
       if (err) return console.error(err);
       return notes;
     });
-    res.render("newNotes",{notas});  
+    res.render("newNote",{notas});  
   }catch(e){
     console.error(e);
   }  
