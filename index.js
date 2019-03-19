@@ -47,6 +47,7 @@ app.post('/update', function(req,res){
   let id = req.body.id;
   console.log(id);
   Notes.findById(id, function(err, note) {
+    console.log(note);
     if (err) return console.error(err);  
     note.title = req.body.title;
     note.text = req.body.text;
