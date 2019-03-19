@@ -49,14 +49,14 @@ app.post('/notes/new', async function(req, res){
   }  
 });
 
-app.post('/post', function(req,res){
+app.post('/notes', function(req,res){
   Notes.create({title:req.body.title,body:req.body.text}, err => {
     if(err){
       return console.log("ocurrio un error: ",err)
     }
     console.log("documento generado");
   });
-  res.redirect("/");
+  res.redirect("/notes");
 });
 
 // app.post('/update', function(req,res){
