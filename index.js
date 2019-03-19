@@ -23,10 +23,10 @@ var notesSchema = mongoose.Schema({
 const Notes = mongoose.model("Notes", notesSchema);
 
 app.get('/', async function(req, res){
-  res.redirect("/notes");
+  res.redirect("/notes/");
 });
 
-app.get('/notes', async function(req, res){
+app.get('/notes/', async function(req, res){
   try{
     const notas = await Notes.find(function(err, notes) {
       if (err) return console.error(err);
@@ -50,7 +50,7 @@ app.post('/notes/new', async function(req, res){
   }  
 });
 
-app.post('/notes', function(req,res){
+app.post('/notes/', function(req,res){
   Notes.create({title:req.body.title,body:req.body.text}, err => {
     if(err){
       return console.log("ocurrio un error: ",err)
