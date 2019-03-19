@@ -16,7 +16,7 @@
     </form>
     <div id="allNotes">
       <% for(let i=0;i<notas.length;i++) { %>
-        <a class="notas" href= "notes/"<%= notas[i]._id %>><h2><%= notas[i].title %></h2><p><%= notas[i].body %></p></a> 
+        <a class="notas" href= "notes/"+<%= notas[i]._id %>><h2><%= notas[i].title %></h2><p><%= notas[i].body %></p></a> 
       <% } %>
     </div>                   
     <script src="static/app.js"></script>
