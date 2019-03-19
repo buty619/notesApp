@@ -22,11 +22,10 @@ var notesSchema = mongoose.Schema({
 const Notes = mongoose.model("Notes", notesSchema);
 
 app.get('/', async function(req, res){
-  Notes.find(function(err, notes) {
+  const notas = await Notes.find(function(err, notes) {
     if (err) return console.error(err);
-    const notas = await notes
-    res.render("index",{notas});    
   });
+  res.render("index",{notas});    
 });
 
 app.post('/post', function(req,res){
