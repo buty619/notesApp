@@ -12,5 +12,5 @@ $(".notas").on("click",function(){
   let text = $(this).find("p").text();
   $("#title").val(title); 
   $("#text").val(text);
-  $("#text").attr("value",$(this).attr("class"));
+  $("#text").attr("value",$(this).attr("id"));
 });
