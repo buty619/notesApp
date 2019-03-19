@@ -67,19 +67,17 @@ app.get('/notes/:id', async function(req,res){
   res.render("show",{notas:notas, currentNote: note});
 });
 
-app.post('/edit', function(req,res){
-  Notes.findById(req.params.id, function(err, note) {
-    console.log(note);
-    if (err) return console.error(err);
-    console.log(req.body.title);  
-    note.title = req.body.title;
-    console.log(req.body.text);
-    note.text = req.body.text;
-    note.save(function(err) {
-      if (err) return console.error(err);
-    });
-  });
-  res.redirect("/");
+app.patch('/notes/:id', async function(req,res,next){
+  const id = req.params.id;
+  const note = await  Notes.findById(id);
+  note.title = req.body.title;
+  note.body = req.body.text;
+  try{
+    await note.save({});
+    res.status(204).send([]);
+  }catch(e){
+    return next(e);
+  }
 });
 
 app.listen(PORT, () => console.log("Inició en puerto .." + PORT));

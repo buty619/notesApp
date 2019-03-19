@@ -7,6 +7,16 @@ $("#text").keypress(function (e) {
     }
 });
 
+$("#edit"),on("submit", function(){
+  $.ajax({
+    method: "PATCH",
+    url:"/notes/<%= note.id %>",
+    data: $(this).serialize()
+  }).done((result) => {
+    window.location = "/notes"
+  });
+});
+
 // $(".notas").on("click",function(){
 //   let title = $(this).find("h2").text();
 //   let text = $(this).find("p").text();
