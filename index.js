@@ -24,6 +24,7 @@ const Notes = mongoose.model("Notes", notesSchema);
 app.get('/', async function(req, res){
   const notas = await Notes.find(function(err, notes) {
     if (err) return console.error(err);
+    return notes;
   });
   res.render("index",{notas});    
 });
