@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 //  ----------
 const PORT = process.env.PORT  || 3000;
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.on("error", function(e) { console.error(e); });
 app.use(express.urlencoded());
 app.use("/static", express.static(path.join(__dirname, "assets")));
