@@ -11,7 +11,7 @@
   </head>
   <body>
     <h1>NOTAS</h1>
-    <form id="edit" action="/edit" method="post">
+    <form id="edit" action="/edit">
       <input name="title" id="title" type="text" value="<%= currentNote.title %>">           
       <input name="text" id="text" type="text" value="<%= currentNote.body %>">      
     </form>
@@ -21,7 +21,7 @@
     <% } %>
     </div>
     <script>
-      $("#edit").on("submit", function(){
+      $("form").on("submit", function(){
         console.log($(this).serialize());
         $.ajax({
           method: "PATCH",
