@@ -63,6 +63,7 @@ app.post('/notes', function(req,res){
 app.get('/notes/:id', async function(req,res){
   const notas = await Notes.find();
   const note = await Notes.findById(req.params.id);
+  console.log(note);
   res.render("show",{notas:notas, currentNote: note});
 });
 
