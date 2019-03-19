@@ -44,12 +44,12 @@ app.post('/post', function(req,res){
 });
 
 app.post('/update', function(req,res){
-  let id = req.body.idNote;
-  console.log(id);
-  Notes.findById(id, function(err, note) {
+  Notes.findById(req.body.idNote, function(err, note) {
     console.log(note);
-    if (err) return console.error(err);  
+    if (err) return console.error(err);
+    console.log(req.body.title);  
     note.title = req.body.title;
+    console.log(req.body.text);
     note.text = req.body.text;
     note.save(function(err) {
       if (err) return console.error(err);
