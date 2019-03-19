@@ -15,6 +15,7 @@
       <input name="title" id="title" type="text" value="<%= currentNote.title %>">           
       <input name="text" id="text" type="text" value="<%= currentNote.body %>">      
     </form>
+    <button>Delete</button>
     <div id="allNotes">
     <% for(let i=0;i<notas.length;i++) { %>
       <a class="notas" href="/notes/<%= notas[i]._id %>"><h2><%= notas[i].title %></h2><p><%= notas[i].body %></p></a> 
@@ -22,11 +23,18 @@
     </div>
     <script>
       $("form").on("submit", function(){
-        console.log($(this).serialize());
         $.ajax({
           method: "PATCH",
           url:"/notes/<%= currentNote.id %>",
           data: $(this).serialize()
+        }).done((result) => {
+          window.location = "/notes"
+        });
+      });
+      $("button").on("click", function(){
+        $.ajax({
+          method: "DELETE",
+          url:"/notes/<%= currentNote.id %>"
         }).done((result) => {
           window.location = "/notes"
         });

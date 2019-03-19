@@ -80,4 +80,17 @@ app.patch('/notes/:id', async function(req,res,next){
   }
 });
 
+app.delete('/notes/:id', async function(req,res,next){
+  const id = req.params.id;
+  const note = await  Notes.findById(id);
+  try{
+      note.remove(function(err) {
+      if (err) return console.error(err);
+    });  
+    res.status(204).send([]);
+  }catch(e){
+    return next(e);
+  }
+});
+
 app.listen(PORT, () => console.log("Inició en puerto .." + PORT));
