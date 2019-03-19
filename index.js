@@ -22,12 +22,28 @@ var notesSchema = mongoose.Schema({
 const Notes = mongoose.model("Notes", notesSchema);
 
 app.get('/', async function(req, res){
+  res.redirect("/notes");
+});
+
+app.get('/notes', async function(req, res){
   try{
     const notas = await Notes.find(function(err, notes) {
       if (err) return console.error(err);
       return notes;
     });
     res.render("index",{notas});  
+  }catch(e){
+    console.error(e);
+  }  
+});
+
+app.get('/notes/new', async function(req, res){
+  try{
+    const notas = await Notes.find(function(err, notes) {
+      if (err) return console.error(err);
+      return notes;
+    });
+    res.render("newNotes",{notas});  
   }catch(e){
     console.error(e);
   }  

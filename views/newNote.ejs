@@ -11,8 +11,9 @@
   </head>
   <body>
     <h1>NOTAS</h1>
-    <form action="/new" method="post">
-      <button>New Card</button>     
+    <form action="/post" method="post">
+      <input name="title" id="title" type="text">           
+      <input name="text" id="text" type="text">      
     </form>
     <div id="allNotes">
     <% for(let i=0;i<notas.length;i++) { %>
