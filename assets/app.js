@@ -6,3 +6,10 @@ $("#text").keypress(function (e) {
       $("#title").val("");      
     }
 });
+
+$(".notas").on("click",function(){
+  let title = $(this).child().find("h2").text();
+  let text = $(this).child().find("p").text();
+  $("#title").val(title); 
+  $("#text").val(text);
+});
