@@ -7,13 +7,13 @@ $("#text").keypress(function (e) {
     }
 });
 
-$(".notas").on("click",function(){
-  let title = $(this).find("h2").text();
-  let text = $(this).find("p").text();
-  $("#title").val(title); 
-  $("#text").val(text);
-  $("#idNote").val($(this).attr("id"));
-});
+// $(".notas").on("click",function(){
+//   let title = $(this).find("h2").text();
+//   let text = $(this).find("p").text();
+//   $("#title").val(title); 
+//   $("#text").val(text);
+//   $("#idNote").val($(this).attr("id"));
+// });
 
 $(".notas").on('click', function(e) {
   fetch('/noteSelect', {method: 'GET'})
