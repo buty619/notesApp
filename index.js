@@ -37,7 +37,7 @@ app.get('/notes', async function(req, res){
   }  
 });
 
-app.get('/notes/new', async function(req, res){
+app.post('/notes/new', async function(req, res){
   try{
     const notas = await Notes.find(function(err, notes) {
       if (err) return console.error(err);
