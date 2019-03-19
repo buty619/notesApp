@@ -12,8 +12,8 @@
   <body>
     <h1>NOTAS</h1>
     <form action="/edit" method="post">
-      <input name="title" id="title" type="text" value= <%= currentNote.title %>>           
-      <input name="text" id="text" type="text" value= <%= currentNote.body %>>      
+      <input name="title" id="title" type="text" value="<%= currentNote.title %>">           
+      <input name="text" id="text" type="text" value="<%= currentNote.body %>">      
     </form>
     <div id="allNotes">
     <% for(let i=0;i<notas.length;i++) { %>
