@@ -9,9 +9,7 @@ $("#text").keypress(function (e) {
 
 $(".notas").on("click",function(){
   let title = $(this).find("h2").text();
-  console.log(title);
   let text = $(this).find("p").text();
-  console.log(title);
   $("#title").val(title); 
   $("#text").val(text);
 });
