@@ -7,7 +7,7 @@ $("#text").keypress(function (e) {
     }
 });
 
-$("#edit"),on("submit", function(){
+$("#edit").on("submit", function(){
   $.ajax({
     method: "PATCH",
     url:"/notes/<%= note.id %>",
