@@ -73,7 +73,7 @@ app.get('/newUser', async function(req, res){
 });
 
 app.post('/newUser', function(req,res){
-  const hash = dbcrypt.hashSync(req.body.password);
+  const hash = bcrypt.hashSync(req.body.password);
 
   User.create({email:req.body.email,password:hash}, err => {
     if(err){
