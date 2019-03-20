@@ -43,7 +43,11 @@ userSchema.statics.authenticate = async (email, password) => {
 
 var notesSchema = mongoose.Schema({
   title: String,
-  body:String
+  body:String,
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 const User = mongoose.model("User", userSchema);
@@ -136,6 +140,7 @@ app.post('/notes',requireUser, function(req,res){
     }
     console.log("documento generado");
   });
+  Notes.user = res.locals.user._id;
   res.redirect("/notes");
 });
 
