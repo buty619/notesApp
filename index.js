@@ -35,6 +35,7 @@ const Notes = mongoose.model("Notes", notesSchema);
 userSchema.statics.authenticate = async (email, password) => {
   // buscamos el usuario utilizando el email
   const user = await mongoose.model("User").findOne({ email: email });
+  console.log(user);
   if (user) {
     // si existe comparamos la contraseña
     return new Promise((resolve, reject) => {
