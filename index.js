@@ -29,9 +29,6 @@ var notesSchema = mongoose.Schema({
   body:String
 });
 
-const User = mongoose.model("User", userSchema);
-const Notes = mongoose.model("Notes", notesSchema);
-
 userSchema.statics.authenticate = async (email, password) => {
   // buscamos el usuario utilizando el email
   const user = await mongoose.model("User").findOne({ email: email });
@@ -48,6 +45,11 @@ userSchema.statics.authenticate = async (email, password) => {
   }
   return null;
 };
+
+const User = mongoose.model("User", userSchema);
+const Notes = mongoose.model("Notes", notesSchema);
+
+
 
 const requireUser = async (req, res, next) => {
   const userId = req.session.userId;
