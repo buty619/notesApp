@@ -32,7 +32,7 @@ var notesSchema = mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 const Notes = mongoose.model("Notes", notesSchema);
 
-UserSchema.statics.authenticate = async (email, password) => {
+userSchema.statics.authenticate = async (email, password) => {
   // buscamos el usuario utilizando el email
   const user = await mongoose.model("User").findOne({ email: email });
 
