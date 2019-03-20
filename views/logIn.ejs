@@ -10,20 +10,13 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   </head>
   <body>
-    <h1>NOTAS</h1>
+    <h1>Log In</h1>
     <form action="/post" method="post">
-      <input name="title" id="title" type="text">           
-      <input name="text" id="text" type="text">      
-    </form>
-    <!--<form action="/update" method="post">
-      <button>update</button>
-      <input name ="idNote" id ="idNote" type="text"> 
-    </form>-->
-    <div id="allNotes">
-    <% for(let i=0;i<notas.length;i++) { %>
-      <div class="notas" id= <%= notas[i]._id %>><h2><%= notas[i].title %></h2><p><%= notas[i].body %></p></div> 
-    <% } %>
-    </div>                   
+      <input name="email" id="email" type="text">           
+      <input name="password" id="password" type="text">
+      <button>Log In</button>
+      <button>Register</button>      
+    </form>                 
     <script src="static/app.js"></script>
   </body>
 </html>

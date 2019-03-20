@@ -3,6 +3,9 @@ const express = require("express");
 const http = require('http').Server(app);
 const path = require("path");
 const mongoose = require("mongoose");
+const cookieSession = require('cookie-session')
+var bcrypt = require('bcrypt-nodejs');
+
 
 //  ----------
 const PORT = process.env.PORT  || 3000;
@@ -13,17 +16,69 @@ app.use("/static", express.static(path.join(__dirname, "assets")));
 app.use("/notes/static", express.static(path.join(__dirname, "assets")));
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.use(cookieSession({secret:"Shh! It's a secret"})) 
 //  ----------
+
+var userSchema = mongoose.Schema({
+  email: String,
+  password:String
+});
 
 var notesSchema = mongoose.Schema({
   title: String,
   body:String
 });
 
+const User = mongoose.model("User", userSchema);
 const Notes = mongoose.model("Notes", notesSchema);
 
+UserSchema.statics.authenticate = async (email, password) => {
+  // buscamos el usuario utilizando el email
+  const user = await mongoose.model("User").findOne({ email: email });
+
+  if (user) {
+    // si existe comparamos la contraseña
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(password, user.password, (err, result) => {
+        if (err) reject(err);
+        resolve(result === true ? user : null);
+      });
+    });
+    return user;
+  }
+
+  return null;
+};
+
+const requireUser = async (req, res, next) => {
+  const userId = req.session.userId;
+  if (userId) {
+    const user = await User.findOne({ _id: userId });
+    res.locals.user = user;
+    next();
+  } else {
+    return res.redirect("/login");
+  }
+}
+
 app.get('/', async function(req, res){
-  res.redirect("/notes");
+  res.redirect("/logIn");
+});
+
+app.post("/login", function(req, res) {  
+  const email = req.body.email;
+  const password = req.body.password;
+  try {
+    const user = await User.authenticate(email, password);
+    if (user) {
+      req.session.userId = user._id; // acá guardamos el id en la sesión
+      return res.redirect("/notes");
+    } else {
+      res.render("/login", { error: "Wrong email or password. Try again!" });
+    }
+  } catch (e) {
+    return next(e);
+  }
 });
 
 app.get('/notes', async function(req, res){
