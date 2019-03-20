@@ -100,6 +100,11 @@ app.post("/logIn", async function(req, res, next) {
   }
 });
 
+app.get('/logOut', async function(req, res){
+  req.session = null
+  res.render("logIn");
+});
+
 app.get('/notes',requireUser, async function(req, res){
   try{
     const notas = await Notes.find(function(err, notes) {
@@ -124,7 +129,7 @@ app.post('/notes/new',requireUser, async function(req, res){
   }  
 });
 
-app.post('/notes', function(req,res){
+app.post('/notes',requireUser, function(req,res){
   Notes.create({title:req.body.title,body:req.body.text}, err => {
     if(err){
       return console.log("ocurrio un error: ",err)

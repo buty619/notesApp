@@ -15,6 +15,7 @@
       <input name="title" id="title" type="text">           
       <input name="text" id="text" type="text">      
     </form>
+    <a href="/logOut">Log Out</a>
     <div id="allNotes">
       <% for(let i=0;i<notas.length;i++) { %>
         <a class="notas" href= "/notes/<%= notas[i]._id %>"><h2><%= notas[i].title %></h2><p><%= notas[i].body %></p></a> 
