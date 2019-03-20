@@ -64,7 +64,7 @@ app.get('/', async function(req, res){
   res.redirect("/logIn");
 });
 
-app.post("/login", async function(req, res) {  
+app.post("/logIn", async function(req, res) {  
   const email = req.body.email;
   const password = req.body.password;
   try {
@@ -73,7 +73,7 @@ app.post("/login", async function(req, res) {
       req.session.userId = user._id; // acá guardamos el id en la sesión
       return res.redirect("/notes");
     } else {
-      res.render("/login", { error: "Wrong email or password. Try again!" });
+      res.render("/logIn", { error: "Wrong email or password. Try again!" });
     }
   } catch (e) {
     return next(e);
