@@ -35,7 +35,6 @@ const Notes = mongoose.model("Notes", notesSchema);
 userSchema.statics.authenticate = async (email, password) => {
   // buscamos el usuario utilizando el email
   const user = await mongoose.model("User").findOne({ email: email });
-
   if (user) {
     // si existe comparamos la contraseña
     return new Promise((resolve, reject) => {
@@ -43,8 +42,8 @@ userSchema.statics.authenticate = async (email, password) => {
         if (err) reject(err);
         resolve(result === true ? user : null);
       });
-    });
-    return user;
+      return user;
+    });    
   }
   return null;
 };
@@ -64,15 +63,11 @@ app.get('/', async function(req, res){
   res.redirect("/logIn");
 });
 
-app.get('/logIn', async function(req, res){
-  res.render("logIn");
-});
-
 app.get('/newUser', async function(req, res){
   res.render("newUser");
 });
 
-app.post('/newUser', function(req,res){
+app.post('/newUser', function(req,res){ 
   const hash = bcrypt.hashSync(req.body.password);
 
   User.create({email:req.body.email,password:hash}, err => {
@@ -82,16 +77,10 @@ app.post('/newUser', function(req,res){
     console.log("usuario generado");
   });
   res.redirect("/logIn");
+});
 
-  // bcrypt.hash(req.body.password, 10).then(function(hash) {
-  //   User.create({email:req.body.email,password:hash}, err => {
-  //     if(err){
-  //       return console.log("ocurrio un error: ",err)
-  //     }
-  //     console.log("usuario generado");
-  //   });
-  //   res.redirect("/logIn");
-  // });  
+app.get('/logIn', async function(req, res){
+  res.render("logIn");
 });
 
 app.post("/logIn", async function(req, res) {  
