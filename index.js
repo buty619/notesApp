@@ -102,7 +102,7 @@ app.post("/logIn", async function(req, res, next) {
 
 app.get('/logOut', async function(req, res){
   req.session = null
-  res.render("logIn");
+  res.redirect("/logIn");
 });
 
 app.get('/notes',requireUser, async function(req, res){
