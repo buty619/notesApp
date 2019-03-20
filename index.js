@@ -69,8 +69,10 @@ app.get('/logIn', async function(req, res){
 });
 
 app.get('/newUser', async function(req, res){
-  res.render("newuser");
+  res.render("newUser");
 });
+
+
 
 app.post("/logIn", async function(req, res) {  
   const email = req.body.email;
