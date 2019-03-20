@@ -134,13 +134,12 @@ app.post('/notes/new',requireUser, async function(req, res){
 });
 
 app.post('/notes',requireUser, function(req,res){
-  Notes.create({title:req.body.title,body:req.body.text}, err => {
+  Notes.create({title:req.body.title,body:req.body.text, user:res.locals.user._id}, err => {
     if(err){
       return console.log("ocurrio un error: ",err)
     }
     console.log("documento generado");
   });
-  Notes.user = res.locals.user._id;
   res.redirect("/notes");
 });
 
