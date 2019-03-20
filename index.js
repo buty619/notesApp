@@ -84,7 +84,7 @@ app.get('/logIn', async function(req, res){
   res.render("logIn");
 });
 
-app.post("/logIn", async function(req, res) {  
+app.post("/logIn", async function(req, res, next) {  
   const email = req.body.email;
   const password = req.body.password;
   try {
