@@ -73,16 +73,25 @@ app.get('/newUser', async function(req, res){
 });
 
 app.post('/newUser', function(req,res){
-  const passwordHash = req.body.password;
-  return bcrypt.hash(passwordHash, 10).then(function(hash) {
-    Notes.create({email:req.body.email,password:hash}, err => {
-      if(err){
-        return console.log("ocurrio un error: ",err)
-      }
-      console.log("usuario generado");
-    });
-    res.redirect("/logIn");
-  });  
+  const hash = dbcrypt.hashSync(req.body.password);
+
+  User.create({email:req.body.email,password:hash}, err => {
+    if(err){
+      return console.log("ocurrio un error: ",err)
+    }
+    console.log("usuario generado");
+  });
+  res.redirect("/logIn");
+
+  // bcrypt.hash(req.body.password, 10).then(function(hash) {
+  //   User.create({email:req.body.email,password:hash}, err => {
+  //     if(err){
+  //       return console.log("ocurrio un error: ",err)
+  //     }
+  //     console.log("usuario generado");
+  //   });
+  //   res.redirect("/logIn");
+  // });  
 });
 
 app.post("/logIn", async function(req, res) {  
