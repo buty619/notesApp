@@ -68,6 +68,10 @@ app.get('/logIn', async function(req, res){
   res.render("logIn");
 });
 
+app.get('/newUser', async function(req, res){
+  res.render("newuser");
+});
+
 app.post("/logIn", async function(req, res) {  
   const email = req.body.email;
   const password = req.body.password;
