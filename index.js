@@ -72,7 +72,18 @@ app.get('/newUser', async function(req, res){
   res.render("newUser");
 });
 
-
+app.post('/newUser', function(req,res){
+  const passwordHash = req.body.password;
+  bcrypt.hash(passwordHash, 10).then(function(hash) {
+    Notes.create({email:req.body.email,password:hash}, err => {
+      if(err){
+        return console.log("ocurrio un error: ",err)
+      }
+      console.log("usuario generado");
+    });
+  })
+  res.redirect("/logIn");
+});
 
 app.post("/logIn", async function(req, res) {  
   const email = req.body.email;
