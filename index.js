@@ -65,7 +65,7 @@ app.get('/', async function(req, res){
 });
 
 app.get('/logIn', async function(req, res){
-  res.render("/logIn");
+  res.render("logIn");
 });
 
 app.post("/logIn", async function(req, res) {  
