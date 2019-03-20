@@ -46,7 +46,6 @@ UserSchema.statics.authenticate = async (email, password) => {
     });
     return user;
   }
-
   return null;
 };
 
@@ -65,7 +64,7 @@ app.get('/', async function(req, res){
   res.redirect("/logIn");
 });
 
-app.post("/login", function(req, res) {  
+app.post("/login", async function(req, res) {  
   const email = req.body.email;
   const password = req.body.password;
   try {
