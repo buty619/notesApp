@@ -49,8 +49,6 @@ var notesSchema = mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 const Notes = mongoose.model("Notes", notesSchema);
 
-
-
 const requireUser = async (req, res, next) => {
   const userId = req.session.userId;
   if (userId) {
@@ -102,7 +100,7 @@ app.post("/logIn", async function(req, res, next) {
   }
 });
 
-app.get('/notes', async function(req, res){
+app.get('/notes',requireUser, async function(req, res){
   try{
     const notas = await Notes.find(function(err, notes) {
       if (err) return console.error(err);
@@ -114,7 +112,7 @@ app.get('/notes', async function(req, res){
   }  
 });
 
-app.post('/notes/new', async function(req, res){
+app.post('/notes/new',requireUser, async function(req, res){
   try{
     const notas = await Notes.find(function(err, notes) {
       if (err) return console.error(err);
@@ -136,14 +134,14 @@ app.post('/notes', function(req,res){
   res.redirect("/notes");
 });
 
-app.get('/notes/:id', async function(req,res){
+app.get('/notes/:id',requireUser, async function(req,res){
   const notas = await Notes.find();
   const note = await Notes.findById(req.params.id);
   console.log(note);
   res.render("show",{notas:notas, currentNote: note});
 });
 
-app.patch('/notes/:id', async function(req,res,next){
+app.patch('/notes/:id',requireUser, async function(req,res,next){
   const id = req.params.id;
   const note = await  Notes.findById(id);
   note.title = req.body.title;
@@ -156,7 +154,7 @@ app.patch('/notes/:id', async function(req,res,next){
   }
 });
 
-app.delete('/notes/:id', async function(req,res,next){
+app.delete('/notes/:id',requireUser, async function(req,res,next){
   const id = req.params.id;
   const note = await  Notes.findById(id);
   try{
